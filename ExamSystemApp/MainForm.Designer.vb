@@ -37,12 +37,18 @@ Partial Class MainForm
         Me.Transaction = New System.Windows.Forms.ToolStripMenuItem()
         Me.Reports = New System.Windows.Forms.ToolStripMenuItem()
         Me.Logout = New System.Windows.Forms.ToolStripMenuItem()
+        Me.newMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.newMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExamSchedule = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExamTT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExamAttendance = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExamResult = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'MainMenu
         '
-        Me.MainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Master, Me.Transaction, Me.Reports, Me.Logout})
+        Me.MainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Master, Me.Transaction, Me.Reports, Me.Logout, Me.newMenuItem, Me.newMenuItem2})
         Me.MainMenu.Location = New System.Drawing.Point(0, 0)
         Me.MainMenu.Name = "MainMenu"
         Me.MainMenu.Size = New System.Drawing.Size(1098, 24)
@@ -59,65 +65,66 @@ Partial Class MainForm
         'State
         '
         Me.State.Name = "State"
-        Me.State.Size = New System.Drawing.Size(126, 22)
+        Me.State.Size = New System.Drawing.Size(179, 22)
         Me.State.Text = "State"
         '
         'City
         '
         Me.City.Name = "City"
-        Me.City.Size = New System.Drawing.Size(126, 22)
+        Me.City.Size = New System.Drawing.Size(179, 22)
         Me.City.Text = "City"
         '
         'University
         '
         Me.University.Name = "University"
-        Me.University.Size = New System.Drawing.Size(126, 22)
+        Me.University.Size = New System.Drawing.Size(179, 22)
         Me.University.Text = "University"
         '
         'College
         '
         Me.College.Name = "College"
-        Me.College.Size = New System.Drawing.Size(126, 22)
+        Me.College.Size = New System.Drawing.Size(179, 22)
         Me.College.Text = "College"
         '
         'Branches
         '
         Me.Branches.Name = "Branches"
-        Me.Branches.Size = New System.Drawing.Size(126, 22)
+        Me.Branches.Size = New System.Drawing.Size(179, 22)
         Me.Branches.Text = "Branches"
         '
         'AcademicSemesters
         '
         Me.AcademicSemesters.Name = "AcademicSemesters"
-        Me.AcademicSemesters.Size = New System.Drawing.Size(126, 22)
+        Me.AcademicSemesters.Size = New System.Drawing.Size(179, 22)
         Me.AcademicSemesters.Text = "AS"
         '
         'Subjects
         '
         Me.Subjects.Name = "Subjects"
-        Me.Subjects.Size = New System.Drawing.Size(126, 22)
+        Me.Subjects.Size = New System.Drawing.Size(179, 22)
         Me.Subjects.Text = "Subjects"
         '
         'BranchSemester
         '
         Me.BranchSemester.Name = "BranchSemester"
-        Me.BranchSemester.Size = New System.Drawing.Size(126, 22)
-        Me.BranchSemester.Text = "BS"
+        Me.BranchSemester.Size = New System.Drawing.Size(179, 22)
+        Me.BranchSemester.Text = "Brach Semester"
         '
         'BranchSemesterSubject
         '
         Me.BranchSemesterSubject.Name = "BranchSemesterSubject"
-        Me.BranchSemesterSubject.Size = New System.Drawing.Size(126, 22)
-        Me.BranchSemesterSubject.Text = "BSS"
+        Me.BranchSemesterSubject.Size = New System.Drawing.Size(179, 22)
+        Me.BranchSemesterSubject.Text = "Branch Sem Subject"
         '
         'CollegeBranches
         '
         Me.CollegeBranches.Name = "CollegeBranches"
-        Me.CollegeBranches.Size = New System.Drawing.Size(126, 22)
-        Me.CollegeBranches.Text = "CB"
+        Me.CollegeBranches.Size = New System.Drawing.Size(179, 22)
+        Me.CollegeBranches.Text = "College Branch"
         '
         'Transaction
         '
+        Me.Transaction.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExamSchedule, Me.ExamTT, Me.ExamAttendance, Me.ExamResult})
         Me.Transaction.Name = "Transaction"
         Me.Transaction.Size = New System.Drawing.Size(79, 20)
         Me.Transaction.Text = "Transaction"
@@ -133,6 +140,42 @@ Partial Class MainForm
         Me.Logout.Name = "Logout"
         Me.Logout.Size = New System.Drawing.Size(57, 20)
         Me.Logout.Text = "Logout"
+        '
+        'newMenuItem
+        '
+        Me.newMenuItem.Name = "newMenuItem"
+        Me.newMenuItem.Size = New System.Drawing.Size(96, 20)
+        Me.newMenuItem.Text = "newMenuItem"
+        '
+        'newMenuItem2
+        '
+        Me.newMenuItem2.Name = "newMenuItem2"
+        Me.newMenuItem2.Size = New System.Drawing.Size(102, 20)
+        Me.newMenuItem2.Text = "newMenuItem2"
+        '
+        'ExamSchedule
+        '
+        Me.ExamSchedule.Name = "ExamSchedule"
+        Me.ExamSchedule.Size = New System.Drawing.Size(167, 22)
+        Me.ExamSchedule.Text = "Exam Schedule"
+        '
+        'ExamTT
+        '
+        Me.ExamTT.Name = "ExamTT"
+        Me.ExamTT.Size = New System.Drawing.Size(167, 22)
+        Me.ExamTT.Text = "Exam TT"
+        '
+        'ExamAttendance
+        '
+        Me.ExamAttendance.Name = "ExamAttendance"
+        Me.ExamAttendance.Size = New System.Drawing.Size(167, 22)
+        Me.ExamAttendance.Text = "Exam Attendance"
+        '
+        'ExamResult
+        '
+        Me.ExamResult.Name = "ExamResult"
+        Me.ExamResult.Size = New System.Drawing.Size(167, 22)
+        Me.ExamResult.Text = "Exam Marks"
         '
         'MainForm
         '
@@ -167,4 +210,10 @@ Partial Class MainForm
     Friend WithEvents BranchSemester As ToolStripMenuItem
     Friend WithEvents BranchSemesterSubject As ToolStripMenuItem
     Friend WithEvents CollegeBranches As ToolStripMenuItem
+    Friend WithEvents ExamSchedule As ToolStripMenuItem
+    Friend WithEvents ExamTT As ToolStripMenuItem
+    Friend WithEvents ExamAttendance As ToolStripMenuItem
+    Friend WithEvents ExamResult As ToolStripMenuItem
+    Friend WithEvents newMenuItem As ToolStripMenuItem
+    Friend WithEvents newMenuItem2 As ToolStripMenuItem
 End Class

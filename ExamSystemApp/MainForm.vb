@@ -1,6 +1,7 @@
 ﻿Public Class MainForm
     Private Sub Menu1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles MainMenu.ItemClicked
         If e.ClickedItem.Name = "Logout" Then
+            MessageBox.Show("Thank you for using Exam System! Good Bye!! You are logged out!!!")
             Me.Close()
         End If
     End Sub
@@ -13,11 +14,28 @@
                 Dim stateForm As New State()
                 stateForm.MdiParent = Me
                 stateForm.Show()
+            Case "City"
+                Debug.Write("city")
+            Case "University"
+                Debug.Write("University")
             Case Else
 
         End Select
-
     End Sub
+
+    Private Sub Tranaction_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles Transaction.DropDownItemClicked
+        Dim menuText = e.ClickedItem.ToString()
+        Debug.Write(menuText)
+        Select Case (menuText)
+            Case "State"
+                Dim stateForm As New State()
+                stateForm.MdiParent = Me
+                stateForm.Show()
+            Case Else
+
+        End Select
+    End Sub
+
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim loginForm As New LoginForm
@@ -26,6 +44,9 @@
         If result <> DialogResult.OK Then
             loginForm.Dispose()
             Me.Close()
+        Else
+            REM user authentication is successfull and you can show them the screen
+            Debug.Write("User logged in!")
         End If
     End Sub
 End Class
