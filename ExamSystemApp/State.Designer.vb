@@ -24,7 +24,7 @@ Partial Class State
     Private Sub InitializeComponent()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblRows = New System.Windows.Forms.Label()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBoxName = New System.Windows.Forms.TextBox()
@@ -34,6 +34,7 @@ Partial Class State
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.TextBoxID = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.btnClose = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -52,18 +53,18 @@ Partial Class State
         Me.TextBoxSearch.Size = New System.Drawing.Size(87, 23)
         Me.TextBoxSearch.TabIndex = 1
         '
-        'Label1
+        'lblRows
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(37, 39)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 15)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "20 Rec Of 100"
+        Me.lblRows.AutoSize = True
+        Me.lblRows.Location = New System.Drawing.Point(37, 39)
+        Me.lblRows.Name = "lblRows"
+        Me.lblRows.Size = New System.Drawing.Size(78, 15)
+        Me.lblRows.TabIndex = 2
+        Me.lblRows.Text = "20 Rec Of 100"
         '
         'btnNew
         '
-        Me.btnNew.Location = New System.Drawing.Point(102, 3)
+        Me.btnNew.Location = New System.Drawing.Point(475, 406)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(56, 23)
         Me.btnNew.TabIndex = 3
@@ -114,7 +115,7 @@ Partial Class State
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(460, 406)
+        Me.btnCancel.Location = New System.Drawing.Point(281, 406)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(56, 23)
         Me.btnCancel.TabIndex = 9
@@ -138,12 +139,22 @@ Partial Class State
         Me.Label4.TabIndex = 10
         Me.Label4.Text = "State ID"
         '
+        'btnClose
+        '
+        Me.btnClose.Location = New System.Drawing.Point(343, 406)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(56, 23)
+        Me.btnClose.TabIndex = 12
+        Me.btnClose.Text = "Close"
+        Me.btnClose.UseVisualStyleBackColor = True
+        '
         'State
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.TextBoxID)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnCancel)
@@ -153,7 +164,7 @@ Partial Class State
         Me.Controls.Add(Me.TextBoxName)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnNew)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblRows)
         Me.Controls.Add(Me.TextBoxSearch)
         Me.Controls.Add(Me.ListBox1)
         Me.Name = "State"
@@ -167,7 +178,7 @@ Partial Class State
 
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents TextBoxSearch As TextBox
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblRows As Label
     Friend WithEvents btnNew As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBoxName As TextBox
@@ -177,4 +188,5 @@ Partial Class State
     Friend WithEvents btnCancel As Button
     Friend WithEvents TextBoxID As TextBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents btnClose As Button
 End Class
