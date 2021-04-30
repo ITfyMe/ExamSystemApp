@@ -15,9 +15,13 @@
                 stateForm.MdiParent = Me
                 stateForm.Show()
             Case "City"
-                Debug.Write("city")
+                Dim cityForm As New City()
+                cityForm.MdiParent = Me
+                cityForm.Show()
             Case "University"
-                Debug.Write("University")
+                Dim univForm As New University()
+                univForm.MdiParent = Me
+                univForm.Show()
             Case Else
 
         End Select
@@ -31,6 +35,10 @@
                 Dim stateForm As New State()
                 stateForm.MdiParent = Me
                 stateForm.Show()
+            Case "City"
+                Dim cityForm As New City()
+                cityForm.MdiParent = Me
+                cityForm.Show()
             Case Else
 
         End Select

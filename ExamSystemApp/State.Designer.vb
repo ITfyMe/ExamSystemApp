@@ -35,6 +35,7 @@ Partial Class State
         Me.TextBoxID = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnImport = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -148,12 +149,22 @@ Partial Class State
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnImport
+        '
+        Me.btnImport.Location = New System.Drawing.Point(713, 31)
+        Me.btnImport.Name = "btnImport"
+        Me.btnImport.Size = New System.Drawing.Size(75, 23)
+        Me.btnImport.TabIndex = 13
+        Me.btnImport.Text = "Import"
+        Me.btnImport.UseVisualStyleBackColor = True
+        '
         'State
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnImport)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.TextBoxID)
         Me.Controls.Add(Me.Label4)
@@ -189,4 +200,5 @@ Partial Class State
     Friend WithEvents TextBoxID As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents btnClose As Button
+    Friend WithEvents btnImport As Button
 End Class

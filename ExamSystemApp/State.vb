@@ -23,12 +23,14 @@ Public Class State
             ds = New DataSet
 
 
+            ' calling stored procedure
             With cmd
                 .Connection = con
                 .CommandText = sql
                 .CommandType = CommandType.StoredProcedure
             End With
 
+            ' add parameters to the stored procedure
             cmd.Parameters.AddWithValue("pStateName", "")
             cmd.Parameters.AddWithValue("pCode", "")
             cmd.Parameters.AddWithValue("pPageNum", 1)
@@ -36,7 +38,7 @@ Public Class State
             REM we are executing two sql queries and results come in two result set
             REM use dataset to get the result
             da.SelectCommand = cmd
-            REM da.Fill(dt)
+
             da.Fill(ds)
 
             'Now the data contain two tables and their row count may be zero 
@@ -63,17 +65,20 @@ Public Class State
     Private Sub CallSelect()
         Dim nRows As Integer
         nRows = 0
-        'sql = "Select count(*) from tState ; select * from tState;"
+        ' initialize the procedure name to get the data
         sql = "sStateGetListPage"
         mxrow = GetData(sql)
-        MessageBox.Show("rows returned " + mxrow.ToString)
-        If mxrow > 0 Then
-            Do While (nRows < mxrow)
-                REM MessageBox.Show(dt.Rows(nRows).Item("Name"))
-                ListBox1.Items.Add(dt.Rows(nRows).Item("Name"))
-                nRows += 1
-            Loop
-        End If
+        'MessageBox.Show("rows returned " + mxrow.ToString)
+
+        'If mxrow > 0 Then
+        '    Do While (nRows < mxrow)
+        '        REM MessageBox.Show(dt.Rows(nRows).Item("Name"))
+        '        ListBox1.Items.Add(dt.Rows(nRows).Item("Name"))
+        '        nRows += 1
+        '    Loop
+        'End If
+        ListBox1.DataSource = dt
+        ListBox1.DisplayMember = "Name"
     End Sub
 
 
@@ -84,11 +89,14 @@ Public Class State
                 TextBoxName.Text = .Item("Name")
                 TextBoxCode.Text = .Item("Code")
             End With
+            'TextBoxID.Text = dt.Rows(ListBox1.SelectedIndex).Item("StateID")
+            'TextBoxName.Text = dt.Rows(ListBox1.SelectedIndex).Item("Name")
+            'TextBoxCode.Text = dt.Rows(ListBox1.SelectedIndex).Item("Code")
             mode = 1
         End If
     End Sub
     Private Sub State_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Debug.WriteLine("form state loade even method")
+        ' get list of state from the database
         Call CallSelect()
         Me.WindowState = FormWindowState.Maximized
         isModified = False
@@ -105,7 +113,6 @@ Public Class State
 
     Private Sub InsertRec()
         Dim sql = "sStateAdd"
-        REM sql = "Insert into test(Name, Code) values ('" + TextBoxName.Text + "','" + TextBoxCode.Text + "')"
         Try
             con.Open()
             cmd = New MySqlCommand
@@ -167,7 +174,12 @@ Public Class State
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.Close()
+        If isModified = True Then
+            Dim res = MsgBox("Are ou sure you dont want to save the data?", MsgBoxStyle.OkCancel)
+            If (res = MsgBoxResult.Ok) Then
+                ResetFields()
+            End If
+        End If
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
@@ -179,7 +191,7 @@ Public Class State
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         Call ResetFields()
-        mode = 0
+        mode = 0 ' New
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
@@ -199,5 +211,10 @@ Public Class State
 
     Private Sub TextBoxCode_TextChanged(sender As Object, e As EventArgs) Handles TextBoxCode.TextChanged
         isModified = True
+    End Sub
+
+    Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
+        Dim importForm = New Import
+        importForm.ShowDialog(Me)
     End Sub
 End Class
