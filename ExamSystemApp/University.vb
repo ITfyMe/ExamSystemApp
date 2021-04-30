@@ -78,6 +78,7 @@ Public Class University
         da.SelectCommand = cmd
         da.Fill(ds)
         ListBox1.DataSource = ds.Tables(1)
+        dt = ds.Tables(1)
         ListBox1.DisplayMember = "Name"
         ListBox1.ValueMember = "UniversityID"
         con.Close()
@@ -96,7 +97,29 @@ Public Class University
         GetUniversity()
         'cmbState.SelectedIndex = 0
     End Sub
-
+    Private Sub setFieldsSelectedIndex()
+        If (dt.Rows.Count > 0 And ListBox1.SelectedIndex > -1) Then
+            With dt.Rows(ListBox1.SelectedIndex)
+                TextBoxName.Text = .Item("Name")
+                TextBoxCode.Text = .Item("Code")
+                txtAddr1.Text = .Item("Addr1")
+                txtAdd2.Text = .Item("Addr2")
+                txtAdd3.Text = .Item("Addr3")
+                cmbState.SelectedValue = .Item("StateID")
+                cmbCity.SelectedValue = .Item("CityID")
+            End With
+            'TextBoxName.Text = dt.Rows(ListBox1.SelectedIndex).Item("UniversityName")
+            'TextBox.Text = dt.Rows(ListBox1.SelectedIndex).Item("Name")
+            'TextBoxCode.Text = dt.Rows(ListBox1.SelectedIndex).Item("Code")
+            mode = 1
+        End If
+    End Sub
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        REM sender has selected item
+        REM listbox1's selected index would be set
+        REM MessageBox.Show(ListBox1.SelectedIndex.ToString)
+        Call setFieldsSelectedIndex()
+    End Sub
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbState.SelectedIndexChanged
         'FilterCityBasedOnStateSelected()
     End Sub
@@ -182,5 +205,9 @@ Public Class University
         Finally
             con.Close()
         End Try
+    End Sub
+
+    Private Sub TextBoxName_TextChanged(sender As Object, e As EventArgs) Handles TextBoxName.TextChanged
+
     End Sub
 End Class
