@@ -8,6 +8,7 @@ Public Class University
     Dim ds As DataSet
     Dim stateDT As DataTable
     Dim cityDT As DataTable
+    Dim dv As DataView
     Dim sql As String
     Dim mxrow As Integer
     Dim mode As Integer REM 0 is new 1 is update
@@ -54,6 +55,7 @@ Public Class University
         cmbCity.DataSource = cityDT
         cmbCity.DisplayMember = "Name"
         cmbCity.ValueMember = "CityID"
+        dv = cityDT.DefaultView
         con.Close()
     End Sub
     Private Sub GetUniversity()
@@ -85,7 +87,11 @@ Public Class University
     Private Sub FilterCityBasedOnStateSelected()
         ' stateDT contains statelist
         ' cityDT contains citylist
-        cityDT.Select("StateID = " + cmbCity.SelectedValue.ToString)
+        If (cmbState.SelectedIndex > -1) Then
+            dv = cityDT.DefaultView
+            dv.RowFilter = "StateID = " + cmbState.SelectedValue.ToString
+            cmbCity.DataSource = dv
+        End If
     End Sub
     Private Sub University_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' get state list - to bind to state dropdown
@@ -95,10 +101,13 @@ Public Class University
         GetCity()
         GetUniversity()
         'cmbState.SelectedIndex = 0
+
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbState.SelectedIndexChanged
-        'FilterCityBasedOnStateSelected()
+        If (Not cityDT Is Nothing) Then
+            FilterCityBasedOnStateSelected()
+        End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click

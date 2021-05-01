@@ -87,34 +87,53 @@ Public Class City
     End Sub
 
     Private Sub StatePopulate()
-        ' retrive the state and bind to combo box
-        con.Open()
-        cmd = New MySqlCommand
-        da = New MySqlDataAdapter
-        stateDT = New DataTable
-
-        With cmd
-            .Connection = con
-            .CommandText = "sStateGetList"
-            .CommandType = CommandType.StoredProcedure
-        End With
-
-        cmd.Parameters.AddWithValue("pStateIDs", "")
-        da.SelectCommand = cmd
-        da.Fill(stateDT)
-        'Dim nRows = 0
-        cmbState.DataSource = stateDT
+        sql = "sStateGetList"
+        Dim pName() As String = {"pStateIDs"}
+        Dim pValue() As String = {""}
+        stateDT = DbAccess.Instance.ExcuteSPDT(sql, pName, pValue)
+        cmbState.DataSource = stateDT.DefaultView
         cmbState.DisplayMember = "Name"
         cmbState.ValueMember = "StateID"
-        'Do While (nRows < stateDT.Rows.Count)
+
+        ' retrive the state and bind to combo box
+        'con.Open()
+        'cmd = New MySqlCommand
+        'da = New MySqlDataAdapter
+        'stateDT = New DataTable
+
+        'With cmd
+        '    .Connection = con
+        '    .CommandText = "sStateGetList"
+        '    .CommandType = CommandType.StoredProcedure
+        'End With
+
+        'cmd.Parameters.AddWithValue("pStateIDs", "")
+        'da.SelectCommand = cmd
+        'da.Fill(stateDT)
+        'cmbState.DataSource = stateDT.DefaultView
+        'cmbState.DisplayMember = "Name"
+        'cmbState.ValueMember = "StateID"
+        ''Do While (nRows < stateDT.Rows.Count)
         '    cmbState.Items.Add(stateDT.Rows(nRows).Item("Name"))
         '    nRows += 1
         'Loop
-        con.Close()
+    End Sub
+    Private Sub LoadObjectList()
+        sql = "sCityGetListPage"
+        Dim pName() As String = {"pStateID", "pCityName", "pCode", "pPageNum", "pPageSize"}
+        Dim pValue() As String = {"0", "", "", "1", "20"}
+        ds = DbAccess.Instance.ExcuteSPDS(sql, pName, pValue)
+        If (ds.Tables.Count = 2) Then
+            mxrow = ds.Tables(0).Rows(0).Item(0)
+            lblRows.Text = "Showing " + mxrow.ToString + " records"
+            dt = ds.Tables(1)
+            ListBox1.DataSource = dt
+            ListBox1.DisplayMember = "Name"
+        End If
     End Sub
     Private Sub State_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call StatePopulate()
-        Call CallSelect()
+        LoadObjectList()
         Me.WindowState = FormWindowState.Maximized
         isModified = False
     End Sub
@@ -227,4 +246,5 @@ Public Class City
     Private Sub TextBoxCode_TextChanged(sender As Object, e As EventArgs) Handles TextBoxCode.TextChanged
         isModified = True
     End Sub
+
 End Class
