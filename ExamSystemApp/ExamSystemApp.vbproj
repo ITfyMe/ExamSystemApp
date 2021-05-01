@@ -9,7 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AS.Designer.vb" />
+    <Compile Remove="AS.vb" />
     <Compile Remove="DManager.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="AS.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.24" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="System.Management" Version="5.0.0" />
   </ItemGroup>
