@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Data
 Public Class Import
+    Public Property rows As DataGridViewRowCollection
     Private Sub Import_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim fName As String = ""
         OpenFileDialog1.InitialDirectory = "c:\desktop"
@@ -23,15 +24,27 @@ Public Class Import
                 If (nLine = 0) Then
                     Debug.Write("Header text" + TextLine)
                 Else
-                    'gridImport.Columns.AddRange()
+                    SplitLine = Split(TextLine, ",")
+                    Debug.Write(SplitLine.Count)
+                    Me.gridImport.Rows.Add(SplitLine)
                 End If
-
-                SplitLine = Split(TextLine, ",")
-                Debug.Write(SplitLine.Count)
-                Me.gridImport.Rows.Add(SplitLine)
+                nLine += 1
             Loop
+
         Else
             MsgBox("File Does Not Exist")
         End If
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Me.rows = gridImport.Rows
+        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.Close()
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Me.rows = Nothing
+        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.Close()
     End Sub
 End Class
